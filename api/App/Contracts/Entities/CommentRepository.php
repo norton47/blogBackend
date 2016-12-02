@@ -11,4 +11,5 @@ use Api\App\Contracts\Query\FindInterface;
  */
 interface CommentRepository extends FindInterface
 {
+    public function countNewComments(ConditionInterface $condition = null);
 }

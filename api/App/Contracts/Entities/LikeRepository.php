@@ -11,4 +11,5 @@ use Api\App\Contracts\Query\FindInterface;
  */
 interface LikeRepository extends FindInterface
 {
+    public function countNewLikes(ConditionInterface $condition = null);
 }

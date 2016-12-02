@@ -63,7 +63,7 @@ class PostRepository implements PostInterface
         $model = $this->model;
         $query = $model::orderBy('created_at');
 
-        if (key_exists('categoryId', $condition->getCondition())) {
+        if ($condition->getCondition('categoryId')) {
             $this->queryCondition($query, $condition, 'categoryId');
         }
 

@@ -2,8 +2,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Like
+ * @package App\Models
+ */
 class Like extends Model
 {
     use SoftDeletes;

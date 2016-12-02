@@ -15,6 +15,7 @@ class CreateTableLikes extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
+            $table->dateTime('new_checked')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

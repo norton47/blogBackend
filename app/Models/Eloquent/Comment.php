@@ -2,8 +2,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Comment
+ * @package App\Models
+ */
 class Comment extends Model
 {
     use SoftDeletes;

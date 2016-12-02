@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Models;
 
 /**
- * Model Trait
- * @package App\Models\Traits
+ * Model
+ * @package App\Models
  */
-trait ModelsTrait
+class Model extends \Illuminate\Database\Eloquent\Model
 {
     /**
      * @inheritdoc
@@ -15,4 +15,5 @@ trait ModelsTrait
     {
         return with(new static)->getTable();
     }
+
 }

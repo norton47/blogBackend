@@ -12,6 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait QueryTrait
 {
+    /**
+     * Осуществляет проверку условия по наличию $scope
+     * и модифицирует $query на основе $scope
+     *
+     * @param Builder $query
+     * @param ConditionInterface $condition
+     * @param $scope
+     */
     public function queryScope(Builder $query, ConditionInterface $condition, $scope)
     {
         $scopes = $condition->getScopes();

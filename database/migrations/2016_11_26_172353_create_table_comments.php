@@ -16,6 +16,7 @@ class CreateTableComments extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
+            $table->dateTime('new_checked')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

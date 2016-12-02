@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Api\App\Contracts\Entities\CategoryRepository as CategoryInterface;
 use Api\App\Contracts\Entities\PostRepository as PostInterface;
 use App\Http\Requests\CategoryRequest;
+use App\Models\Category;
 use App\Services\CreateCategoryService;
 use Api\App\Storage\Condition;
 use Session;

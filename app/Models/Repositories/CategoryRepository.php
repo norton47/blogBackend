@@ -26,7 +26,7 @@ class CategoryRepository implements CategoryInterface
     protected $translation;
 
     /**
-     * @param Model $content
+     * @param Model $category
      */
     public function __construct(Model $category)
     {

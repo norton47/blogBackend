@@ -34,7 +34,9 @@ class CommentRepository implements CommentInterface
     }
 
     /**
-     * @inheritdoc
+     * @param $id
+     * @param ConditionInterface|null $condition
+     * @return mixed
      */
     public function findById($id, ConditionInterface $condition = null)
     {
@@ -45,7 +47,8 @@ class CommentRepository implements CommentInterface
     }
 
     /**
-     * @inheritdoc
+     * @param ConditionInterface $condition
+     * @return mixed
      */
     public function findOne(ConditionInterface $condition)
     {
@@ -55,8 +58,10 @@ class CommentRepository implements CommentInterface
         return $this->queryOne($query);
     }
 
+
     /**
-     * @inheritdoc
+     * @param ConditionInterface $condition
+     * @return mixed
      */
     public function findAll(ConditionInterface $condition)
     {
@@ -64,6 +69,14 @@ class CommentRepository implements CommentInterface
         $query = $model::orderBy('created_at');
 
         return $this->queryAll($query, $condition);
+    }
+
+    public function countNewComments(ConditionInterface $condition = null)
+    {
+        $model = $this->model;
+        $query = $model::where('new_checked', null);
+
+        return $query->count();
     }
 
     /**
@@ -78,6 +91,7 @@ class CommentRepository implements CommentInterface
         $this->setAttribute($model, $data, 'content');
         $this->setAttribute($model, $data, 'post_id');
         $this->setAttribute($model, $data, 'user_id');
+        $this->setAttribute($model, $data, 'new_checked');
         $model->save();
 
         return $model->id;

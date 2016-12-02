@@ -29,8 +29,11 @@ class PostController extends Controller
     public function index()
     {
         $condition = new Condition();
-
-        return $posts = $this->postRepository->findAll($condition);
+        $condition->pagination();
+        $posts = $this->postRepository->findAll($condition);
+        return Response::json([
+            'data' => $posts
+        ], 200);
     }
 
     /**

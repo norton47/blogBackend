@@ -40,6 +40,7 @@ class CommentController extends Controller
     public function index()
     {
         $condition = new Condition();
+        $condition->pagination();
         $comments = $this->commentRepository->findAll($condition);
 
         return Response::json([

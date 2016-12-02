@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use Api\App\Contracts\Entities\CommentRepository as CommentInterface;
+use Api\App\Contracts\Entities\LikeRepository as LikeInterface;
 use Api\App\Contracts\Storage\Condition as ConditionInterface;
 use Illuminate\Database\Eloquent\Model;
 use \App\Models\Traits\QueryTrait;
@@ -11,7 +11,7 @@ use \App\Models\Traits\QueryTrait;
  * Content Repository
  * @package App\Repositories
  */
-class LikeRepository implements CommentInterface
+class LikeRepository implements LikeInterface
 {
     use QueryTrait;
 
@@ -66,6 +66,11 @@ class LikeRepository implements CommentInterface
         return $this->queryAll($query, $condition);
     }
 
+    public function countNewLikes(ConditionInterface $condition)
+    {
+
+    }
+
     /**
      * @inheritdoc
      */
@@ -75,6 +80,7 @@ class LikeRepository implements CommentInterface
             $model = $this->model;
         }
 
+        $this->setAttribute($model, $data, 'new_checked');
         $this->setAttribute($model, $data, 'comment_id');
         $this->setAttribute($model, $data, 'user_id');
         $model->save();
