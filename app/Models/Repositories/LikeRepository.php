@@ -66,9 +66,12 @@ class LikeRepository implements LikeInterface
         return $this->queryAll($query, $condition);
     }
 
-    public function countNewLikes(ConditionInterface $condition)
+    public function countNewLikes(ConditionInterface $condition = null)
     {
+        $model = $this->model;
+        $query = $model::where('new_checked', null);
 
+        return $query->count();
     }
 
     /**

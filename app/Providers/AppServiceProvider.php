@@ -15,6 +15,8 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\Category;
+use View;
+use App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        App::singleton(\App\Http\Composers\NewCommentsComposer::class);
+        View::composer(['vendor.adminlte.layouts.partials.headernotice.news'], \App\Http\Composers\NewCommentsComposer::class);
     }
 
     /**

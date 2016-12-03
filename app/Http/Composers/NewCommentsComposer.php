@@ -3,6 +3,7 @@
 namespace App\Http\Composers;
 
 use Api\App\Contracts\Entities\CommentRepository as CommentInterface;
+use Api\App\Contracts\Entities\LikeRepository as LikeInterface;
 use Illuminate\Contracts\View\View;
 use Api\App\Storage\Condition;
 
@@ -23,9 +24,23 @@ class NewCommentsComposer
      */
     private $commentRepository;
 
-    public function __construct(CommentInterface $commentRepository)
+    /**
+     * @var LikeInterface
+     */
+    private $likeRepository;
+
+    /**
+     * NewCommentsComposer constructor.
+     * @param CommentInterface $commentRepository
+     * @param LikeInterface $likeRepository
+     */
+    public function __construct(
+        CommentInterface $commentRepository,
+        LikeInterface $likeRepository
+    )
     {
         $this->commentRepository = $commentRepository;
+        $this->likeRepository = $likeRepository;
     }
 
     /**
@@ -37,7 +52,16 @@ class NewCommentsComposer
             return $this->data;
         }
 
-        return $this->commentRepository->countNewComments();
+        $comments = $this->commentRepository->countNewComments();
+        $likes = $this->likeRepository->countNewLikes();
+
+        $data = [
+            'comments' => $comments,
+            'likes' => $likes,
+            'allNews' => $comments + $likes
+        ];
+
+        return $data;
     }
 
     /**
@@ -45,7 +69,7 @@ class NewCommentsComposer
      */
     public function compose(View $view)
     {
-        $view->with('categoryControl', $this->getData());
+        $view->with('likeComments', $this->getNewComments());
     }
 
 }

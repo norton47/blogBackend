@@ -12,6 +12,10 @@ return [
 
     'save' => 'Сохранить',
     'create_success' => 'Успешно сохранено',
-    'create_error' => 'Ошибка сохранения'
+    'create_error' => 'Ошибка сохранения',
+    'viewall' => 'Посмотреть все обновления',
+    'message' => [
+        'notifications :amount' => '{1}:amount Обновление |[2,9] :amount Обновления |{0} :amount Обновлений |[10,Inf] :amount Обновлений'
+    ],
 
 ];
