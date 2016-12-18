@@ -36,10 +36,7 @@ class PostController extends Controller
         $posts = $this->postRepository->findAll($condition);
 
         return view('post.index', [
-            'data' => [
-                'category' => $category,
-                'posts' => $posts
-            ]
+            'posts' => $posts
         ]);
     }
 
